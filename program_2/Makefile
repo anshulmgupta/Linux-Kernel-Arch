@@ -20,7 +20,7 @@ compile:
 	sudo mkdir -p $(LDD); sudo cp $(OBJ).ko $(LDD); sudo depmod -a
 
 load: compile
-	echo "Now in laod"
+	echo "Now in Load"
 	sudo insmod ./$(OBJ).ko
 
 loadall: compile
