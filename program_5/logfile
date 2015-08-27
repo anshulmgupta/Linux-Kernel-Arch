@@ -1,0 +1,38 @@
+[Linux-Kernel@localhost program_5]$ ./hellow_signal
+
+PARENT: Setting up SIGHUP handler with pid = 1700 
+
+
+PARENT: Setting up SIGINT handler with pid = 1700 
+
+
+PARENT: Setting up SIGQUIT handler with pid = 1700 
+
+
+PARENT: Sending SIGHUP Parent pid = 1700 
+
+
+
+ From signal handler with PID = 1700 I have received a SIGHUP signal 
+
+ CHILD process invoked with PID = 1701 
+
+
+CHILD: Setting up SIGHUP handler with pid = 1701 
+
+
+CHILD: Setting up SIGINT handler with pid = 1701 
+
+
+CHILD: Setting up SIGQUIT handler with pid = 1701 
+
+
+PARENT: Sending SIGINT Parent pid = 1700 
+
+From signal handler with PID = 1700 I have received a SIGINT signal 
+
+PARENT: Sending SIGQUIT Parent pid = 1700 
+
+From signal handler with PID = 1700 I have received the SIGQUIT signal 
+
+
