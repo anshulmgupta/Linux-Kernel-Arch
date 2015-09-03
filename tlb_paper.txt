@@ -1,0 +1,42 @@
+This document lists and discusses various scenarios when accessing TLB's
+------------------------------------------------------------------------
+
+When linear address is used first time by program it's corresponding
+physical address is computed by doing a page table walk in memory. Then the
+physical address is stored in TLB considering the fact that linear address
+can be used again by program in near future. If the linear address
+translation is not present in memory than the page is loaded from disk and
+address translation is stored in memory and in TLB.
+
+TLB entries are associated with a process at the time of context switch
+TLB entries are invalidated for the older process and new TLB entries are
+loaded for the new process.
+
+TLB entries contain: 
+ Valid bit 
+ Other housekeeping bits 
+ Tag = Virtual Page Number 
+ Data = Physical Page Number
+
+TLB miss is caused by a page table walk. If page is present in memory
+then the mapping is loaded into TLB and if page is not present in memory then
+page fault is caused. Page fault gives control to OS by generating an
+exception. Then the OS loads page to memory which is then copied to TLB.
+
+First time TLB miss occurs the page is loaded from memory and the
+execution begins then the address translation is loaded from TLB. If OS has
+to load the page to memory then TLB miss occurs for 2 times. In the fist time
+miss the page is loaded to memory and in the second miss page is loaded from
+memory to TLB before program finds the linear address translation.
+
+In TLB higher 10 bits are used as key and value contains the address
+translation, this way TBL can be more optimized by making the less number of
+TLB misses. If we could have used the lower 10 bits as keys than there would
+have been lot of misses as this address barely change.
+
+Page table walk process: 
+The cr3 register address is added to the lower 10 bits of the linear address 
+which is passed to PDE to get the PDE address. The address from PDE
+is then added to the higher 10 bits to get the page from PTE and once the
+page is found in PTE then the other lower 12 bits are used to find the
+address translation from  within the page.
